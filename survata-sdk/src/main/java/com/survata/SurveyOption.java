@@ -18,6 +18,8 @@ public class SurveyOption implements Serializable {
     public String explainer;
     @Nullable
     public String contentName;
+    @Nullable
+    public boolean testing;
     @NonNull
     public final String publisher;
 
@@ -30,6 +32,7 @@ public class SurveyOption implements Serializable {
         map.put("brand", brand);
         map.put("explainer", explainer);
         map.put("contentName", contentName);
+        map.put("testing", Boolean.toString(testing));
         return map;
     }
 }
