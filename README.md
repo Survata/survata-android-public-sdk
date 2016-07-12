@@ -20,7 +20,7 @@ Survata Android SDK
     
     * modify `publish` closure in `build.gradle`
     
-    ```groovy
+```groovy
          publish {
              userOrg = ''
              groupId = ''
@@ -29,20 +29,19 @@ Survata Android SDK
              desc = ''
              website = ''
          }
-    ```
+```
     
     * use the task `bintrayUpload` to publish (make sure you build the project first!):
     
-    ```bash
+```bash
     $ ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
-    ```
+```
 
 3.  Sync bintray user repository to jcenter
 
     * You now have your own Maven Repository on Bintray which is ready to be uploaded the library to.
     
     [![ScreenShot](step1.png)](https://github.com/greycats/survata-android-sdk/blob/development/step1.png)
-
 
     * Nothing to do but click Send
     
@@ -62,43 +61,43 @@ Survata Android SDK
 
 Add dependencies in `build.gradle`.
 
-    ```groovy
+```groovy
         dependencies {
             compile 'com.survata.android:library:1.0.7'
         }
-    ```
+```
 ### Step 2
 
 Add permission in `AndroidManifest.xml`
 
-    ```
+```
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
         
         // optional, if you want to send zipcode
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    ```
+```
     
 
 ### Step 3
 
 Define Survey
 
-    ```java
+```java
     private Survey mSurvey;
     
     private Button mSurveyButton;
     
     ...
     
-    ```
+```
 
 ### Step 4
 
 Check survey availability. The publisherId is `@NonNull`.
 
-    ```java
+```java
      public void checkSurvey() {
             Context context = getContext();
             SurveyOption option = new SurveyOption(publisherId);
@@ -113,14 +112,14 @@ Check survey availability. The publisherId is `@NonNull`.
                         }
                     });
         }
-     ```
+ ```
 
 ### Step 5  
 
 show survey in WebView. Should called after checkSurvey();
 It will return survey event(COMPLETED, SKIPPED, CANCELED, CREDIT_EARNED, NETWORK_NOT_AVAILABLE)
-     
-     ```java
+
+```java
      private void showSurvey() {                
             mSurvey.createSurveyWall(getActivity(), new Survey.SurveyStatusListener() {
                     @Override
@@ -131,4 +130,4 @@ It will return survey event(COMPLETED, SKIPPED, CANCELED, CREDIT_EARNED, NETWORK
                     }
                 });
             }
-    ```
+```
