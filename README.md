@@ -116,7 +116,7 @@ Check survey availability. The publisherId property is `@NonNull`.
 
 #### IMPORTANT NOTE
 
-There is a frequency cap on how much surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways. 
+There is a frequency cap on how many surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways. 
 
 ####1. FIRST WAY: Using "testing" property
 
