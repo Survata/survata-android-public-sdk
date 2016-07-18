@@ -55,7 +55,7 @@ Survata Android SDK
 
 # Usage #
 
-    Please check out [demo app](https://github.com/greycats/survata-android-demo) for a real-life demo.
+Please check out [demo app](https://github.com/Survata/survata-android-demo-app) for a real-life demo.
 
 ### Step 1
 
