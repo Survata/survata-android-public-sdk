@@ -14,7 +14,7 @@ Survata Android SDK
 
 2.  Package aar and upload
 
-    [bintray-release](https://github.com/novoda/bintray-release), it provides a=n easy way to release your Android and other artifacts to bintray.
+    [bintray-release](https://github.com/novoda/bintray-release), it provides an easy way to release your Android and other artifacts to bintray.
     
     Refer the steps in [README.md](https://github.com/novoda/bintray-release/blob/master/README.md). 
     
