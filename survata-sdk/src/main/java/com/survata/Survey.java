@@ -170,7 +170,7 @@ public class Survey {
                 String zipcode = ((SurveyDebugOptionInterface) mSurveyOption).getZipcode();
                 if (!TextUtils.isEmpty(zipcode)) {
                     mZipCode = zipcode;
-                    startCreate(context, surveyAvailabilityListener);
+                    startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
                 } else {
                     new LocationTracker(context) {
                         @Override
@@ -181,36 +181,50 @@ public class Survey {
                                 mZipCode = zipCode;
                             }
 
-                            startCreate(context, surveyAvailabilityListener);
+                            startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
                         }
 
                         @Override
                         public void onLocationFoundFailed() {
                             Logger.e(TAG, "fetch zipCode failed");
 
-                            startCreate(context, surveyAvailabilityListener);
+                            startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
                         }
 
                     }.start();
                 }
             }
         } else {
-            startCreate(context, surveyAvailabilityListener);
+            startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
         }
+    }
+
+    private void startCreateAfterFetchAdvertId(final Context context,
+                                         final SurveyAvailabilityListener surveyAvailabilityListener) {
+        Utils.getAdvertId(context, new Utils.ResponseListener() {
+            @Override
+            public void onSuccess(String advertId) {
+                Logger.d(TAG, "get mobileAdId success: " + advertId);
+                mSurveyOption.mobileAdId = advertId;
+                startCreate(context, surveyAvailabilityListener);
+            }
+
+            @Override
+            public void onError(String errorMessage) {
+                Logger.d(TAG, "get mobileAdId failed: " + errorMessage);
+                startCreate(context, surveyAvailabilityListener);
+            }
+        });
     }
 
     private void startCreate(final Context context,
                              final SurveyAvailabilityListener surveyAvailabilityListener) {
-
         Map<String, String> params = mSurveyOption.getParams();
-
-        String publisher = mSurveyOption.publisher;
-        String contentName = mSurveyOption.contentName;
-
-        params.put("publisherUuid", publisher);
-        params.put("contentName", contentName);
+        params.put("publisherUuid", mSurveyOption.publisher);
+        params.put("contentName", mSurveyOption.contentName);
         params.put("postalCode", mZipCode);
-
+        params.put("mobileAdId", mSurveyOption.mobileAdId);
+        
         Networking networking = Networking.getInstance();
         networking.request(context,
                 CREATE_SURVEY_URL,

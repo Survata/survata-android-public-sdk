@@ -22,6 +22,8 @@ public class SurveyOption implements Serializable {
     public boolean testing;
     @NonNull
     public final String publisher;
+    @NonNull
+    public String mobileAdId;
 
     public SurveyOption(String publisher) {
         this.publisher = publisher;
