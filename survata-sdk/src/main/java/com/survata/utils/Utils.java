@@ -1,9 +1,13 @@
 package com.survata.utils;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Base64;
 
+import com.google.android.gms.ads.identifier.AdvertisingIdClient;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.survata.R;
 
 import org.json.JSONException;
@@ -26,6 +30,44 @@ public class Utils {
     private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
 
     private static final int EOF = -1;
+
+    public interface ResponseListener {
+
+        void onSuccess(String advertId);
+
+        void onError(String errorMessage);
+    }
+
+    public static void getAdvertId(final Context context, final ResponseListener listener) {
+        final AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                AdvertisingIdClient.Info idInfo;
+                try {
+                    idInfo = AdvertisingIdClient.getAdvertisingIdInfo(context.getApplicationContext());
+                } catch (IOException e) {
+                    listener.onError("Connecting to Google Play services error");
+                    return null;
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    listener.onError("Google Play services is not available");
+                    return null;
+                } catch (GooglePlayServicesRepairableException e) {
+                    listener.onError("Google Play services repairable");
+                    return null;
+                }
+
+                if (idInfo == null) {
+                    listener.onError("AdvertisingIdInfo is null");
+                    return null;
+                }
+
+                listener.onSuccess(idInfo.getId());
+                return null;
+            }
+
+        };
+        task.execute();
+    }
 
     public static String parseParamMap(Map<String, String> params) {
         JSONObject jsonObject = new JSONObject();
