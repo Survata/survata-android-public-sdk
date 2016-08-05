@@ -37,10 +37,10 @@ dependencies {
 }
 
 publish {
-    userOrg = 'evanliu1'
+    userOrg = 'theresagao'
     groupId = 'com.survata.android'
     artifactId = 'library'
-    publishVersion = '1.0.8'
+    publishVersion = '1.0.10'
     desc = 'survata sdk'
-    website = 'https://github.com/greycats/survata-android-sdk'
+    website = 'https://github.com/Survata/survata-android-public-sdk'
 }
