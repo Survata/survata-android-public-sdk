@@ -59,11 +59,11 @@ Please check out [demo app](https://github.com/Survata/survata-android-demo-app)
 
 ### Step 1
 
-Add dependencies in `build.gradle`.
+Add dependencies in `build.gradle`. 1.0.12 is the latest version.
 
 ```groovy
         dependencies {
-            compile 'com.survata.android:library:1.0.10'
+            compile 'com.survata.android:library:1.0.12'
         }
 ```
 ### Step 2
@@ -128,12 +128,12 @@ There is a property called **testing** which is a boolean that can be set to tru
     mSurvey = new Survey(option);
 ```
 
-####2. SECOND WAY: Using a default survey with SurveyDebugOption, "preview" property & demo survey preview id 
+####2. SECOND WAY: Using a default survey with SurveyOption, "preview" property & demo survey preview id 
 
-There is another class called **SurveyDebugOption** (subclass of SurveyOption) in the SDK. It has a property called **preview** that allows you to set a default preview Id for a survey (thus, have a specific survey). We have a default short demo survey with just 3 questions at Survata that is perfect for testing that uses the preview id **5fd725139884422e9f1bb28f776c702d**. Here's some code as to show you how to integrate it: 
+There is a property called **preview** that allows you to set a default preview Id for a survey (thus, have a specific survey). We have a default short demo survey with just 3 questions at Survata that is perfect for testing that uses the preview id **5fd725139884422e9f1bb28f776c702d**. Here's some code as to show you how to integrate it: 
 
 ```java
-    SurveyDebugOption option = new SurveyDebugOption(publisherId);
+    SurveyOption option = new SurveyOption(publisherId);
     option.preview = "5fd725139884422e9f1bb28f776c702d";
 ```
 
