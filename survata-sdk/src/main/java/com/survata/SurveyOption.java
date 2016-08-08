@@ -19,6 +19,8 @@ public class SurveyOption implements Serializable {
     @Nullable
     public String contentName;
     @Nullable
+    public String preview;
+    @Nullable
     public boolean testing;
     @NonNull
     public final String publisher;
@@ -34,6 +36,7 @@ public class SurveyOption implements Serializable {
         map.put("brand", brand);
         map.put("explainer", explainer);
         map.put("contentName", contentName);
+        map.put("preview", preview);
         map.put("testing", Boolean.toString(testing));
         return map;
     }
