@@ -59,11 +59,11 @@ Please check out [demo app](https://github.com/Survata/survata-android-demo-app)
 
 ### Step 1
 
-Add dependencies in `build.gradle`.
+Add dependencies in `build.gradle`. 1.0.12 is the latest version.
 
 ```groovy
         dependencies {
-            compile 'com.survata.android:library:1.0.10'
+            compile 'com.survata.android:library:1.0.12'
         }
 ```
 ### Step 2
