@@ -37,7 +37,9 @@ public class SurveyOption implements Serializable {
         map.put("explainer", explainer);
         map.put("contentName", contentName);
         map.put("preview", preview);
-        map.put("testing", Boolean.toString(testing));
+        if (testing) {
+            map.put("testing", Boolean.toString(testing));
+        }
         return map;
     }
 }

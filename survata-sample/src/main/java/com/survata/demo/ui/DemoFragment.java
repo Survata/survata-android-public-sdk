@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.survata.Survey;
 import com.survata.demo.R;
 import com.survata.demo.util.Settings;
+import com.survata.SurveyOption;
 
 import jp.wasabeef.blurry.Blurry;
 
@@ -71,6 +72,7 @@ public class DemoFragment extends Fragment {
         option.preview = Settings.getPreviewId(context);
         option.zipcode = Settings.getZipCode(context);
         option.sendZipcode = Settings.getZipCodeEnable(context);
+//        SurveyOption option = new SurveyOption(publisherId);
         option.contentName = Settings.getContentName(context);
 
         mSurvey = new Survey(option);
