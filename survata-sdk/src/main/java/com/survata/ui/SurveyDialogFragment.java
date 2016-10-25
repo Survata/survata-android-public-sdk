@@ -118,15 +118,20 @@ public class SurveyDialogFragment extends DialogFragment {
 
         @JavascriptInterface
         public void onSurveyLoaded(Object data) {
-            Logger.d(TAG, "survey loaded" + data);
+
 
             if (data != null && data instanceof Map) {
+                Logger.d(TAG, "survey loaded" + data);
                 Map map = (Map) data;
                 if ("monetizable".equals(map.get("status"))) {
                     //continue
                 } else {
                     updateResult(Survey.SurveyEvents.CREDIT_EARNED);
                 }
+            }
+            else {
+                Logger.d(TAG, "survey loaded has incomplete data");
+                updateResult(Survey.SurveyEvents.NO_SURVEY_AVAILABLE);
             }
         }
 

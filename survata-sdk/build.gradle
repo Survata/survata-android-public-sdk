@@ -41,7 +41,7 @@ publish {
     userOrg = 'survata'
     groupId = 'com.survata.android'
     artifactId = 'library'
-    publishVersion = '1.0.14'
+    publishVersion = '1.0.15'
     desc = 'survata sdk'
     website = 'https://github.com/Survata/survata-android-public-sdk'
 }
