@@ -63,7 +63,7 @@ Add dependencies in `build.gradle`. 1.0.15 is the latest version.
 
 ```groovy
         dependencies {
-            compile 'com.survata.android:library:1.0.15'
+            compile 'com.survata.android:Survata:1.0.+'
         }
 ```
 ### Step 2
