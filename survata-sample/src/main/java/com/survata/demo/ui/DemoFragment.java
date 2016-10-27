@@ -68,13 +68,17 @@ public class DemoFragment extends Fragment {
 
         final Context context = getContext();
         String publisherId = Settings.getPublisherId(context);
-        SurveyDebugOption option = new SurveyDebugOption(publisherId);
-        option.preview = Settings.getPreviewId(context);
-        option.zipcode = Settings.getZipCode(context);
-        option.sendZipcode = Settings.getZipCodeEnable(context);
-//        SurveyOption option = new SurveyOption(publisherId);
-        option.contentName = Settings.getContentName(context);
+        //Using SurveyDebugOption
+//        SurveyDebugOption option = new SurveyDebugOption(publisherId);
+//        option.preview = Settings.getPreviewId(context);
+//        option.zipcode = Settings.getZipCode(context);
+//        option.sendZipcode = Settings.getZipCodeEnable(context);
 
+        //Using SuveyOption
+        SurveyOption option = new SurveyOption(publisherId);
+//        option.preview = Settings.getPreviewId(context);
+
+        option.contentName = Settings.getContentName(context);
         mSurvey = new Survey(option);
 //        Survey.setSurvataLogger(mSurvataLogger);
         mSurvey.create(getActivity(),

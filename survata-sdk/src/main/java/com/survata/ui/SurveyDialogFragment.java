@@ -131,7 +131,11 @@ public class SurveyDialogFragment extends DialogFragment {
             }
             else {
                 Logger.d(TAG, "survey loaded has incomplete data");
-                updateResult(Survey.SurveyEvents.NO_SURVEY_AVAILABLE);
+                if (!mSurveyOption.testing && (mSurveyOption.preview == null || mSurveyOption.preview.trim().equals(""))) {
+                    updateResult(Survey.SurveyEvents.NO_SURVEY_AVAILABLE);
+                }
+
+
             }
         }
 
