@@ -101,6 +101,8 @@ Check survey availability. The publisherId property is `@NonNull`.
      public void checkSurvey() {
             Context context = getContext();
             SurveyOption option = new SurveyOption(publisherId);
+            Date date = new Date();
+            option.contentName = date.toString();
             mSurvey = new Survey(option);
             mSurvey.create(getActivity(),
                     new Survey.SurveyAvailabilityListener() {
@@ -115,6 +117,8 @@ Check survey availability. The publisherId property is `@NonNull`.
  ```
 
 #### IMPORTANT NOTE
+
+`option.contentName` determines whether the user has taken our surveys recently. If the contentName does not change since the users last visit, then the user may not see any new surveys. If the contentName does change, then the user will be able to view all surveys that are currently available (including surveys the user has seen before).
 
 There is a frequency cap on how many surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways. 
 
@@ -139,7 +143,7 @@ There is a property called **preview** that allows you to set a default preview 
 
 ### Step 5  
 
-Show survey in WebView. Should called after checkSurvey();
+Show survey in WebView. Should be called after checkSurvey();
 It will return the survey events (COMPLETED, SKIPPED, CANCELED, CREDIT_EARNED, NETWORK_NOT_AVAILABLE, NO_SURVEY_AVAILABLE).
 
 ```java
