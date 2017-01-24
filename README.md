@@ -101,6 +101,8 @@ Check survey availability. The publisherId property is `@NonNull`.
      public void checkSurvey() {
             Context context = getContext();
             SurveyOption option = new SurveyOption(publisherId);
+            Date date = new Date();
+            option.contentName = date.toString();
             mSurvey = new Survey(option);
             mSurvey.create(getActivity(),
                     new Survey.SurveyAvailabilityListener() {
@@ -116,6 +118,15 @@ Check survey availability. The publisherId property is `@NonNull`.
 
 #### IMPORTANT NOTE
 
+##### Explaining contentName
+`option.contentName` enforces that there is one survey per respondent per contentName. For example, if using a survey to unlock a level in a game or an e-book, it allows the publisher to offload enforcing that unlocking to be permanent onto us. 
+
+For example, if there's a game and there's a level 7. If a person playing the game has already earned the survey for level 7, if they request a survey for level 7 again, it shows that they already earned it. 
+
+You can pass a timestamp as the contentName if you would like to handle the logic of content availability on your side.
+ * If you do not set contentName, a user will only ever be able to take one survey.
+
+##### Testing
 There is a frequency cap on how many surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways. 
 
 ####1. FIRST WAY: Using "testing" property
@@ -139,7 +150,7 @@ There is a property called **preview** that allows you to set a default preview 
 
 ### Step 5  
 
-Show survey in WebView. Should called after checkSurvey();
+Show survey in WebView. Should be called after checkSurvey();
 It will return the survey events (COMPLETED, SKIPPED, CANCELED, CREDIT_EARNED, NETWORK_NOT_AVAILABLE, NO_SURVEY_AVAILABLE).
 
 ```java
