@@ -118,9 +118,15 @@ Check survey availability. The publisherId property is `@NonNull`.
 
 #### IMPORTANT NOTE
 
-A user can only take one survey for every contentName. This is useful if you would like to unlock a level in a game for a user after taking a survey. In this case you could pass “level 1” as contentName and that level will remain unlocked and the user will not have to take another survey at that level.You can pass a timestamp as the contentName if you would like to handle the logic of content availability on your side.
+##### Explaining contentName
+`option.contentName` enforces that there is one survey per respondent per contentName. For example, if using a survey to unlock a level in a game or an e-book, it allows the publisher to offload enforcing that unlocking to be permanent onto us. 
+
+For example, if there's a game and there's a level 7. If a person playing the game has already earned the survey for level 7, if they request a survey for level 7 again, it shows that they already earned it. 
+
+You can pass a timestamp as the contentName if you would like to handle the logic of content availability on your side.
  * If you do not set contentName, a user will only ever be able to take one survey.
 
+##### Testing
 There is a frequency cap on how many surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways. 
 
 ####1. FIRST WAY: Using "testing" property
