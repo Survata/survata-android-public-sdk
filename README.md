@@ -118,7 +118,8 @@ Check survey availability. The publisherId property is `@NonNull`.
 
 #### IMPORTANT NOTE
 
-`option.contentName` allows you to take ONE survey for every contentName value. For instance, if a mobile app were to want a user to be able to unlock a level, and have that level remain unlocked for them permanently, the app could pass "level 1" etc as the content name. If you just want to consider every request independently, they can pass the current date as the content name.
+A user can only take one survey for every contentName. This is useful if you would like to unlock a level in a game for a user after taking a survey. In this case you could pass “level 1” as contentName and that level will remain unlocked and the user will not have to take another survey at that level.You can pass a timestamp as the contentName if you would like to handle the logic of content availability on your side.
+ * If you do not set contentName, a user will only ever be able to take one survey.
 
 There is a frequency cap on how many surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways. 
 
