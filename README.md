@@ -118,7 +118,7 @@ Check survey availability. The publisherId property is `@NonNull`.
 
 #### IMPORTANT NOTE
 
-`option.contentName` determines whether the user has taken our surveys recently. If the contentName does not change since the users last visit, then the user may not see any new surveys. If the contentName does change, then the user will be able to view all surveys that are currently available (including surveys the user has seen before).
+`option.contentName` allows you to take ONE survey for every contentName value. For instance, if a mobile app were to want a user to be able to unlock a level, and have that level remain unlocked for them permanently, the app could pass "level 1" etc as the content name. If you just want to consider every request independently, they can pass the current date as the content name.
 
 There is a frequency cap on how many surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways. 
 
