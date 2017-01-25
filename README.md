@@ -128,7 +128,8 @@ It will return the survey events (COMPLETED, SKIPPED, CANCELED, CREDIT_EARNED, N
             }
 ```
 
-# How to create aar and upload to jcenter #
+# OPTIONAL #
+### If you want to share your own project in JCenter ### 
 
 1.  Register for an account on bintray.com
 
