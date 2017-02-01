@@ -43,6 +43,7 @@ public class SurveyRequest extends JsonObjectRequest {
                         surveyListener.onErrorResponse(error);
                     }
                 });
+
         mUserAgent = userAgent;
     }
 

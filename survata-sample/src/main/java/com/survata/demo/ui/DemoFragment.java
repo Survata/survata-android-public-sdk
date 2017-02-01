@@ -18,6 +18,8 @@ import com.survata.demo.R;
 import com.survata.demo.util.Settings;
 import com.survata.SurveyOption;
 
+import java.util.Date;
+
 import jp.wasabeef.blurry.Blurry;
 
 public class DemoFragment extends Fragment {
@@ -68,19 +70,15 @@ public class DemoFragment extends Fragment {
 
         final Context context = getContext();
         String publisherId = Settings.getPublisherId(context);
-        //Using SurveyDebugOption
-//        SurveyDebugOption option = new SurveyDebugOption(publisherId);
-//        option.preview = Settings.getPreviewId(context);
-//        option.zipcode = Settings.getZipCode(context);
-//        option.sendZipcode = Settings.getZipCodeEnable(context);
+        Log.d(TAG, "PublisherID: " + publisherId);
 
         //Using SuveyOption
         SurveyOption option = new SurveyOption(publisherId);
-//        option.preview = Settings.getPreviewId(context);
-
-        option.contentName = Settings.getContentName(context);
+        option.preview = Settings.getPreviewId(context); //displays the demo survey. comment out to get a live survey.
+        Date date = new Date();
+        option.contentName = date.toString();
+        Log.d(TAG, "optionParams: " + option.getParams());
         mSurvey = new Survey(option);
-//        Survey.setSurvataLogger(mSurvataLogger);
         mSurvey.create(getActivity(),
                 new Survey.SurveyAvailabilityListener() {
                     @Override
@@ -146,6 +144,7 @@ public class DemoFragment extends Fragment {
                         break;
                 }
                 Toast.makeText(activity, "'surveyWall': : " + info, Toast.LENGTH_SHORT).show();
+                checkSurvey();
             }
         });
     }

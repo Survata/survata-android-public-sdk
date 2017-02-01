@@ -14,11 +14,11 @@ Please check out [demo app](https://github.com/Survata/survata-android-demo-app)
 
 ### Step 1
 
-Add dependencies in `build.gradle`. 1.0.16 is the latest version.
+Add dependencies in `build.gradle`. 1.0.17 is the latest version.
 
 ```groovy
         dependencies {
-            compile 'com.survata.android:Survata:1.0.16'
+            compile 'com.survata.android:Survata:1.0.17'
         }
         repositories {
             maven {
@@ -33,12 +33,12 @@ Add permissions in `AndroidManifest.xml`
 ```
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-        
+
         // optional, if you want to send zipcode
         <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
         <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
-    
+
 
 ### Step 3
 
@@ -48,16 +48,16 @@ Define Survey
 
 ```java
     private Survey mSurvey;
-    
+
     private Button mSurveyButton;
-    
+
     ...
-    
+
 ```
 
 ### Step 4
 
-Check survey availability. The publisherId property is `@NonNull`. 
+Check survey availability. The publisherId property is `@NonNull`.
 
 ```java
      public void checkSurvey() {
@@ -81,15 +81,15 @@ Check survey availability. The publisherId property is `@NonNull`.
 #### IMPORTANT NOTE
 
 ##### Explaining contentName
-`option.contentName` enforces that there is one survey per respondent per contentName. For example, if using a survey to unlock a level in a game or an e-book, it allows the publisher to offload enforcing that unlocking to be permanent onto us. 
+`option.contentName` enforces that there is one survey per respondent per contentName. For example, if using a survey to unlock a level in a game or an e-book, it allows the publisher to offload enforcing that unlocking to be permanent onto us.
 
-For example, if there's a game and there's a level 7. If a person playing the game has already earned the survey for level 7, if they request a survey for level 7 again, it shows that they already earned it. 
+For example, if there's a game and there's a level 7. If a person playing the game has already earned the survey for level 7, if they request a survey for level 7 again, it shows that they already earned it.
 
 You can pass a timestamp as the contentName if you would like to handle the logic of content availability on your side.
  * If you do not set contentName, a user will only ever be able to take one survey.
 
 ##### Testing
-There is a frequency cap on how many surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways. 
+There is a frequency cap on how many surveys we allow one day for a specific IP address. Thus while testing/developing, it might be frustrating to not see surveys appear after a couple of tries. You can bypass this in two ways.
 
 ####1. FIRST WAY: Using "testing" property
 
@@ -101,9 +101,9 @@ There is a property called **testing** which is a boolean that can be set to tru
     mSurvey = new Survey(option);
 ```
 
-####2. SECOND WAY: Using a default survey with SurveyOption, "preview" property & demo survey preview id 
+####2. SECOND WAY: Using a default survey with SurveyOption, "preview" property & demo survey preview id
 
-There is a property called **preview** that allows you to set a default preview Id for a survey (thus, have a specific survey). We have a default short demo survey with just 3 questions at Survata that is perfect for testing that uses the preview id **5fd725139884422e9f1bb28f776c702d**. Here's some code as to show you how to integrate it: 
+There is a property called **preview** that allows you to set a default preview Id for a survey (thus, have a specific survey). We have a default short demo survey with just 3 questions at Survata that is perfect for testing that uses the preview id **5fd725139884422e9f1bb28f776c702d**. Here's some code as to show you how to integrate it:
 
 ```java
     SurveyOption option = new SurveyOption(publisherId);

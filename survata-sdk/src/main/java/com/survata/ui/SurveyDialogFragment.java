@@ -119,7 +119,6 @@ public class SurveyDialogFragment extends DialogFragment {
         @JavascriptInterface
         public void onSurveyLoaded(Object data) {
 
-
             if (data != null && data instanceof Map) {
                 Logger.d(TAG, "survey loaded" + data);
                 Map map = (Map) data;
@@ -129,14 +128,7 @@ public class SurveyDialogFragment extends DialogFragment {
                     updateResult(Survey.SurveyEvents.CREDIT_EARNED);
                 }
             }
-            else {
-                Logger.d(TAG, "survey loaded has incomplete data");
-                if (!mSurveyOption.testing && (mSurveyOption.preview == null || mSurveyOption.preview.trim().equals(""))) {
-                    updateResult(Survey.SurveyEvents.NO_SURVEY_AVAILABLE);
-                }
 
-
-            }
         }
 
         @JavascriptInterface
@@ -169,6 +161,7 @@ public class SurveyDialogFragment extends DialogFragment {
         @JavascriptInterface
         public void onFail() {
             Logger.d(TAG, "onFail");
+            updateResult(Survey.SurveyEvents.NO_SURVEY_AVAILABLE);
         }
     }
 
