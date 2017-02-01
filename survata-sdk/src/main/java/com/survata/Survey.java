@@ -6,6 +6,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.VolleyError;
 import com.survata.network.Networking;
@@ -24,7 +25,11 @@ import java.util.Map;
 public class Survey {
     private static final String TAG = "Survey";
 
-    private static final String CREATE_SURVEY_URL = "https://surveywall-api.survata.com/rest/interview-check/create";
+//    private static final String CREATE_SURVEY_URL = "https://surveywall-api.survata.com/rest/interview-check/create";
+//    private static final String CREATE_SURVEY_URL = "http://10.0.2.2:8070/survata-surveywall/rest/interview-check/create";
+//    private static final String CREATE_SURVEY_URL = "http://192.168.0.92:8070/survata-surveywall/rest/interview-check/create";
+    private static final String CREATE_SURVEY_URL = "http://surveywall-api.survata.com.local:8070/survata-surveywall/rest/interview-check/create";
+
 
     private final SurveyOption mSurveyOption;
 
@@ -85,7 +90,6 @@ public class Survey {
         mSurveyOption = surveyOption;
     }
 
-
     /**
      * if you need log to client, you can call this method.
      * @param survataLogger
@@ -127,7 +131,7 @@ public class Survey {
                                  @Nullable final SurveyStatusListener surveyStatusListener) {
 
         if (!NetworkUtils.isNetworkConnected(activity)) {
-
+            Log.d(TAG, "Network is not connected");
             if (surveyStatusListener != null) {
                 surveyStatusListener.onEvent(SurveyEvents.NETWORK_NOT_AVAILABLE);
             }
@@ -226,6 +230,7 @@ public class Survey {
         params.put("mobileAdId", mSurveyOption.mobileAdId);
         
         Networking networking = Networking.getInstance();
+        Logger.d(TAG, "GOING TO MAKE A REQUEST");
         networking.request(context,
                 CREATE_SURVEY_URL,
                 Utils.parseParamMap(params),

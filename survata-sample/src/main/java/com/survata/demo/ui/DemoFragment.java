@@ -70,14 +70,23 @@ public class DemoFragment extends Fragment {
 
         final Context context = getContext();
         String publisherId = Settings.getPublisherId(context);
+
+//        String publisherId = "15c3b3a1-35b2-4014-ba6e-84d6982bb9d6";
         Log.d(TAG, "PublisherID: " + publisherId);
+
+        //Using SurveyDebugOption
+//        SurveyDebugOption option = new SurveyDebugOption(publisherId);
+//        option.preview = Settings.getPreviewId(context);
+//        option.zipcode = Settings.getZipCode(context);
+//        option.sendZipcode = Settings.getZipCodeEnable(context);
 
         //Using SuveyOption
         SurveyOption option = new SurveyOption(publisherId);
-        option.preview = Settings.getPreviewId(context); //displays the demo survey. comment out to get a live survey.
+        option.preview = Settings.getPreviewId(context);  //displays the demo survey. comment out to get a live survey.
         Date date = new Date();
         option.contentName = date.toString();
         Log.d(TAG, "optionParams: " + option.getParams());
+
         mSurvey = new Survey(option);
         mSurvey.create(getActivity(),
                 new Survey.SurveyAvailabilityListener() {
