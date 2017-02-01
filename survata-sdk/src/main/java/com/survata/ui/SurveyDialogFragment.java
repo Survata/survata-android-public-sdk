@@ -128,7 +128,6 @@ public class SurveyDialogFragment extends DialogFragment {
                     updateResult(Survey.SurveyEvents.CREDIT_EARNED);
                 }
             }
-
         }
 
         @JavascriptInterface
@@ -236,7 +235,7 @@ public class SurveyDialogFragment extends DialogFragment {
                 .replace("[LOADER_BASE64]", Utils.encodeImage(getActivity(), "survata-spinner.png"));
 
 
-        mWebView.loadDataWithBaseURL("https://www.survata.com", data, "text/html", "utf-8", null);
+        mWebView.loadDataWithBaseURL("http://10.0.2.2", data, "text/html", "utf-8", null);
     }
 
     public void dismissSurveyDialog() {

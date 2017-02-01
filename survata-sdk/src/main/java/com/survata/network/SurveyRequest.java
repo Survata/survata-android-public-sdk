@@ -1,6 +1,7 @@
 package com.survata.network;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -44,6 +45,13 @@ public class SurveyRequest extends JsonObjectRequest {
                     }
                 });
 
+        //increase timeout when getting data from staging db
+        int socketTimeout = 5000;
+        super.setRetryPolicy(new DefaultRetryPolicy(
+                socketTimeout,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Logger.d(TAG, "url: " + url);
         mUserAgent = userAgent;
     }
 
