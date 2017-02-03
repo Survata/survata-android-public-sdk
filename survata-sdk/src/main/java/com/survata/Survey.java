@@ -112,7 +112,8 @@ public class Survey {
         CANCELED,                     // user cancel the survey
         CREDIT_EARNED,                // survey loaded done
         NETWORK_NOT_AVAILABLE,        // network is not available
-        NO_SURVEY_AVAILABLE           // no survey available
+        NO_SURVEY_AVAILABLE,          // no survey available
+        ERROR                         // error while getting survey, PLEASE TRY AGAIN
     }
 
     /**

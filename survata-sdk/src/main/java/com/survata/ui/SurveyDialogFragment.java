@@ -161,7 +161,7 @@ public class SurveyDialogFragment extends DialogFragment {
         @JavascriptInterface
         public void onFail() {
             Logger.d(TAG, "onFail");
-            updateResult(Survey.SurveyEvents.NO_SURVEY_AVAILABLE);
+            updateResult(Survey.SurveyEvents.ERROR);
         }
     }
 
@@ -174,7 +174,8 @@ public class SurveyDialogFragment extends DialogFragment {
                 if (surveyEvents == Survey.SurveyEvents.COMPLETED
                         || surveyEvents == Survey.SurveyEvents.CREDIT_EARNED
                         || surveyEvents == Survey.SurveyEvents.NO_SURVEY_AVAILABLE
-                        || surveyEvents == Survey.SurveyEvents.SKIPPED) {
+                        || surveyEvents == Survey.SurveyEvents.SKIPPED
+                        || surveyEvents == Survey.SurveyEvents.ERROR) {
                     dismissSurveyDialog();
                 }
 
