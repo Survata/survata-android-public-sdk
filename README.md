@@ -14,11 +14,11 @@ Please check out [demo app](https://github.com/Survata/survata-android-demo-app)
 
 ### Step 1
 
-Add dependencies in `build.gradle`. 1.0.17 is the latest version.
+Add dependencies in `build.gradle`. 1.0.18 is the latest version.
 
 ```groovy
         dependencies {
-            compile 'com.survata.android:Survata:1.0.17'
+            compile 'com.survata.android:Survata:1.0.18'
         }
         repositories {
             maven {
