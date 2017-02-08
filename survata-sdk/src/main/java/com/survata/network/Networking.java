@@ -35,12 +35,13 @@ public class Networking {
     public void request(final Context context,
                         final String url,
                         final String requestBody,
+                        final String mobileAdId,
                         final SurveyRequest.SurveyListener surveyListener) {
         RequestManager requestManager = new RequestManager() {
 
             @Override
             public Request createRequest() {
-                return new SurveyRequest(url, requestBody, Utils.getUserAgent(context), surveyListener);
+                return new SurveyRequest(url, requestBody, Utils.getUserAgent(context), mobileAdId, surveyListener);
             }
         };
         requestManager.makeRequest(context);

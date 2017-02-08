@@ -229,6 +229,7 @@ public class Survey {
         networking.request(context,
                 CREATE_SURVEY_URL,
                 Utils.parseParamMap(params),
+                mSurveyOption.mobileAdId,
                 new SurveyRequest.SurveyListener() {
                     @Override
                     public void onResponse(JSONObject response) {

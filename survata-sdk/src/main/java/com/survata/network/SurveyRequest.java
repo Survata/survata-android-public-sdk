@@ -17,6 +17,8 @@ public class SurveyRequest extends JsonObjectRequest {
 
     private String mUserAgent;
 
+    private String gaid;
+
     public interface SurveyListener {
         void onResponse(JSONObject response);
 
@@ -26,6 +28,7 @@ public class SurveyRequest extends JsonObjectRequest {
     public SurveyRequest(String url,
                          String requestBody,
                          String userAgent,
+                         final String mobileAdId,
                          final SurveyListener surveyListener) {
         super(Method.POST, url,
                 requestBody,
@@ -45,6 +48,7 @@ public class SurveyRequest extends JsonObjectRequest {
                 });
 
         mUserAgent = userAgent;
+        gaid = mobileAdId;
     }
 
     @Override
@@ -52,6 +56,7 @@ public class SurveyRequest extends JsonObjectRequest {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/javascript");
         headers.put("User-Agent", mUserAgent);
+        headers.put("GAID", gaid);
         return headers;
     }
 }
