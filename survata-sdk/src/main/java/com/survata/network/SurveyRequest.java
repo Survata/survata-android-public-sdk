@@ -18,6 +18,8 @@ public class SurveyRequest extends JsonObjectRequest {
 
     private String mUserAgent;
 
+    private String gaid;
+
     public interface SurveyListener {
         void onResponse(JSONObject response);
 
@@ -27,6 +29,7 @@ public class SurveyRequest extends JsonObjectRequest {
     public SurveyRequest(String url,
                          String requestBody,
                          String userAgent,
+                         final String mobileAdId,
                          final SurveyListener surveyListener) {
         super(Method.POST, url,
                 requestBody,
@@ -45,14 +48,16 @@ public class SurveyRequest extends JsonObjectRequest {
                     }
                 });
 
+        mUserAgent = userAgent;
+        gaid = mobileAdId;
+
         //increase timeout when getting data from staging db
-        int socketTimeout = 5000;
+        int socketTimeout = 100000;
         super.setRetryPolicy(new DefaultRetryPolicy(
                 socketTimeout,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         Logger.d(TAG, "url: " + url);
-        mUserAgent = userAgent;
     }
 
     @Override
@@ -60,6 +65,7 @@ public class SurveyRequest extends JsonObjectRequest {
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/javascript");
         headers.put("User-Agent", mUserAgent);
+        headers.put("GAID", gaid);
         return headers;
     }
 }

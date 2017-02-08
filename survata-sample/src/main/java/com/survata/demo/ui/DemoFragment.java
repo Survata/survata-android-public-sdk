@@ -82,7 +82,7 @@ public class DemoFragment extends Fragment {
 
         //Using SuveyOption
         SurveyOption option = new SurveyOption(publisherId);
-        option.preview = Settings.getPreviewId(context);  //displays the demo survey. comment out to get a live survey.
+//        option.preview = Settings.getPreviewId(context);  //displays the demo survey. comment out to get a live survey.
         Date date = new Date();
         option.contentName = date.toString();
         Log.d(TAG, "optionParams: " + option.getParams());
