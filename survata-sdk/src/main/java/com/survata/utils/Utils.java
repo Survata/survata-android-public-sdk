@@ -1,6 +1,7 @@
 package com.survata.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -90,14 +91,22 @@ public class Utils {
     public static String getUserAgent(Context context) {
         String packageName = "Unknown";
         String versionName = "Unknown";
+        String resourceName = "Unknown";
+
         try {
             packageName = context.getPackageName();
             versionName = context.getPackageManager().getPackageInfo(packageName, 0).versionName;
+
+            Resources res = context.getResources();
+            int resId = res.getIdentifier("app_name", "string", packageName);
+            resourceName = res.getString(resId);
+
         } catch (Exception e) {
             Logger.e(TAG, "get user agent failed", e);
         }
 
-        String currentUserAgent = context.getString(R.string.app_name) + "/" + packageName;
+        String currentUserAgent = resourceName + "/" + packageName;
+
         return String.format(USER_AGENT, currentUserAgent, versionName);
     }
 
