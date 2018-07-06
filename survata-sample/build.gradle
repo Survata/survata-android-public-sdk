@@ -10,13 +10,12 @@ def computeVersionCode = { ->
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
-
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.survata.demo"
-        minSdkVersion 14
-        targetSdkVersion 23
+        minSdkVersion 15
+        targetSdkVersion 27
+
         versionCode computeVersionCode()
         versionName "1.0"
 
@@ -28,6 +27,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     signingConfigs {
@@ -63,17 +66,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
-    compile 'com.squareup:seismic:1.0.2'
-    compile 'com.google.guava:guava:19.0'
-    compile 'net.hockeyapp.android:HockeySDK:3.7.0'
-    compile 'jp.wasabeef:blurry:1.0.5'
-    compile 'com.android.support:preference-v14:23.1.1'
-//    compile 'com.survata.android:library:1.0.5'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:preference-v7:27.1.1'
+    implementation 'com.google.guava:guava:23.0'
+    implementation 'com.squareup:seismic:1.0.2'
+    implementation 'net.hockeyapp.android:HockeySDK:3.7.0'
+    implementation 'jp.wasabeef:blurry:1.0.5'
 
-    releaseCompile project(path: ':survata-sdk', configuration: 'release')
-    debugCompile project(path: ':survata-sdk', configuration: 'debug')
+    implementation project(':survata-sdk')
+    testImplementation 'junit:junit:4.12'
 }
