@@ -2,10 +2,9 @@ Survata Android SDK
 ====================
 
 # Requirements #
-
-- Android 4.0 (API Version 14) and up
-- android-support-v4.jar, r23 (Updated in 1.0.5)
-- android-support-annotations.jar, r23 (Updated in 1.0.5)
+- Android 8.1 (API Version 27) and up
+- android-support-v4.jar, r27
+- android-support-annotations.jar, r27
 - Volley Library (library-1.0.19.jar)(Updated in 1.0.5)
 
 # Usage #
