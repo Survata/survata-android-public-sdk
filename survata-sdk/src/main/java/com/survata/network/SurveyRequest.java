@@ -26,7 +26,7 @@ public class SurveyRequest extends JsonObjectRequest {
     }
 
     public SurveyRequest(String url,
-                         String requestBody,
+                         JSONObject requestBody,
                          String userAgent,
                          final String mobileAdId,
                          final SurveyListener surveyListener) {
