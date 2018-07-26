@@ -70,7 +70,7 @@ public class Utils {
         task.execute();
     }
 
-    public static String parseParamMap(Map<String, String> params) {
+    public static JSONObject parseParamMap(Map<String, String> params) {
         JSONObject jsonObject = new JSONObject();
         for (Map.Entry<String, String> entry : params.entrySet()) {
             String value = entry.getValue();
@@ -85,7 +85,7 @@ public class Utils {
                 }
             }
         }
-        return jsonObject.toString();
+        return jsonObject;
     }
 
     public static String getUserAgent(Context context) {

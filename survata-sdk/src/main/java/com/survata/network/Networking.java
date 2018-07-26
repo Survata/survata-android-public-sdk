@@ -7,6 +7,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.survata.utils.Utils;
 
+import org.json.JSONObject;
+
 public class Networking {
 
     private static Networking mNetworking = new Networking();
@@ -34,7 +36,7 @@ public class Networking {
 
     public void request(final Context context,
                         final String url,
-                        final String requestBody,
+                        final JSONObject requestBody,
                         final String mobileAdId,
                         final SurveyRequest.SurveyListener surveyListener) {
         RequestManager requestManager = new RequestManager() {
