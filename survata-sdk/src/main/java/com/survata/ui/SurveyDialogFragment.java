@@ -25,6 +25,8 @@ import com.survata.SurveyOption;
 import com.survata.utils.Logger;
 import com.survata.utils.Utils;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 public class SurveyDialogFragment extends DialogFragment {
@@ -229,7 +231,7 @@ public class SurveyDialogFragment extends DialogFragment {
         Map<String, String> params = mSurveyOption.getParams();
         params.put("postalCode", mZipCode);
         params.put("mobileAdId", mSurveyOption.mobileAdId);
-        String option = Utils.parseParamMap(params);
+        String option = Utils.parseParamMap(params).toString();
 
         String data = html.replace("[PUBLISHER_ID]", publisher)
                 .replace("[OPTION]", option)
