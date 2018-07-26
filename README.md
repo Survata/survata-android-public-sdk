@@ -3,19 +3,19 @@ Survata Android SDK
 
 # Requirements #
 
-### Android Marshmellow
+### Android Marshmellow (1.0.20)
 - Android 4.0 (API Version 14) and up
 - android-support-v4.jar, r23 (Updated in 1.0.5)
 - android-support-annotations.jar, r23 (Updated in 1.0.5)
 - Volley Library (library-1.1.1.jar)
 
-### Android Nougat
+### Android Nougat (1.1.0)
 - Android 7.0 (API Version 24) and up
 - android-support-v4.jar, r24
 - android-support-annotations.jar, r27
 - Volley Library v1.1.1
 
-### Android Oreo
+### Android Oreo (2.0.0)
 - Android 8.1 (API Version 27) and up
 - android-support-v4.jar, r27
 - android-support-annotations.jar, r27
@@ -27,7 +27,7 @@ Please check out [demo app](https://github.com/Survata/survata-android-demo-app)
 
 ### Step 1
 
-Add dependencies in `build.gradle`. 1.0.18 is the latest version.
+Add dependencies in `build.gradle`. 1.0.20 is the latest version for Android 4.0.
 
 ```groovy
         dependencies {
