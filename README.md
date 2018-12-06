@@ -34,9 +34,6 @@ Add permissions in `AndroidManifest.xml`
         <uses-permission android:name="android.permission.INTERNET"/>
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
-        // optional, if you want to send zipcode
-        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 ```
 
 
