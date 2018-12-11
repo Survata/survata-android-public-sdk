@@ -11,7 +11,6 @@ import com.android.volley.VolleyError;
 import com.survata.network.Networking;
 import com.survata.network.SurveyRequest;
 import com.survata.ui.SurveyDialogFragment;
-import com.survata.utils.LocationTracker;
 import com.survata.utils.Logger;
 import com.survata.utils.NetworkUtils;
 import com.survata.utils.Utils;
@@ -27,8 +26,6 @@ public class Survey {
     private static final String CREATE_SURVEY_URL = "https://surveywall-api.survata.com/rest/interview-check/create";
 
     private final SurveyOption mSurveyOption;
-
-    private LocationTracker mLocationTracker;
 
     private String mZipCode;
 
@@ -70,10 +67,6 @@ public class Survey {
 
     public interface SurveyDebugOptionInterface {
         String getPreview();
-
-        String getZipcode();
-
-        boolean getSendZipcode();
     }
 
 
@@ -161,42 +154,7 @@ public class Survey {
             }
         }
 
-        if (mSurveyOption instanceof SurveyDebugOptionInterface) {
-
-            boolean sendZipcode = ((SurveyDebugOptionInterface) mSurveyOption).getSendZipcode();
-
-            if (sendZipcode) {
-
-                String zipcode = ((SurveyDebugOptionInterface) mSurveyOption).getZipcode();
-                if (!TextUtils.isEmpty(zipcode)) {
-                    mZipCode = zipcode;
-                    startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
-                } else {
-                    new LocationTracker(context) {
-                        @Override
-                        public void onLocationFound(@NonNull String zipCode) {
-                            Logger.e(TAG, "fetch zipCode success: " + zipCode);
-
-                            if (!TextUtils.isEmpty(zipCode)) {
-                                mZipCode = zipCode;
-                            }
-
-                            startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
-                        }
-
-                        @Override
-                        public void onLocationFoundFailed() {
-                            Logger.e(TAG, "fetch zipCode failed");
-
-                            startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
-                        }
-
-                    }.start();
-                }
-            }
-        } else {
-            startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
-        }
+        startCreateAfterFetchAdvertId(context, surveyAvailabilityListener);
     }
 
     private void startCreateAfterFetchAdvertId(final Context context,
@@ -222,7 +180,6 @@ public class Survey {
         Map<String, String> params = mSurveyOption.getParams();
         params.put("publisherUuid", mSurveyOption.publisher);
         params.put("contentName", mSurveyOption.contentName);
-        params.put("postalCode", mZipCode);
         params.put("mobileAdId", mSurveyOption.mobileAdId);
         
         Networking networking = Networking.getInstance();

@@ -31,14 +31,12 @@ public class SurveyDialogFragment extends DialogFragment {
 
     public static final String TAG = "SurveyDialogFragment";
     private static final String SURVEY_OPTION = "SurveyOption";
-    private static final String ZIP_CODE = "zipcode";
     private static final String JS_INTERFACE_NAME = "Android";
 
     private WebView mWebView;
     private ImageView mCloseImage;
 
     private SurveyOption mSurveyOption;
-    private String mZipCode;
 
     private Survey.SurveyStatusListener mSurveyStatusListener;
 
@@ -53,7 +51,6 @@ public class SurveyDialogFragment extends DialogFragment {
         dialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
         Bundle bundle = new Bundle();
         bundle.putSerializable(SURVEY_OPTION, surveyOption);
-        bundle.putSerializable(ZIP_CODE, zipCode);
         dialogFragment.setArguments(bundle);
         return dialogFragment;
     }
@@ -65,7 +62,6 @@ public class SurveyDialogFragment extends DialogFragment {
         Bundle bundle = getArguments();
         if (bundle != null) {
             mSurveyOption = (SurveyOption) bundle.getSerializable(SURVEY_OPTION);
-            mZipCode = bundle.getString(ZIP_CODE);
         }
     }
 
@@ -133,12 +129,12 @@ public class SurveyDialogFragment extends DialogFragment {
 
         @JavascriptInterface
         public void onInterviewStart() {
-            Logger.d(TAG, "The interview is start.");
+            Logger.d(TAG, "The interview has started.");
         }
 
         @JavascriptInterface
         public void onInterviewSkip() {
-            Logger.d(TAG, "The interview is skip.");
+            Logger.d(TAG, "The interview was skipped.");
 
             updateResult(Survey.SurveyEvents.SKIPPED);
         }
@@ -227,7 +223,7 @@ public class SurveyDialogFragment extends DialogFragment {
         String publisher = mSurveyOption.publisher;
 
         Map<String, String> params = mSurveyOption.getParams();
-        params.put("postalCode", mZipCode);
+
         params.put("mobileAdId", mSurveyOption.mobileAdId);
         String option = Utils.parseParamMap(params);
 

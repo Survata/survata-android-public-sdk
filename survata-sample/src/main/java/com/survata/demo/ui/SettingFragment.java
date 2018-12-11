@@ -49,16 +49,6 @@ public class SettingFragment extends PreferenceFragmentCompat implements SharedP
         ((SwitchPreference) preference).setChecked(contentNameEnable);
         hideOrShowContentName(contentNameEnable);
 
-        String zipCodeString = resources.getString(R.string.zip_code);
-        preference = findPreference(zipCodeString);
-        preference.setSummary(Settings.getZipCode(context));
-
-        String zipCodeToggle = resources.getString(R.string.zip_code_toggle);
-        preference = findPreference(zipCodeToggle);
-        boolean zipCodeEnable = Settings.getZipCodeEnable(context);
-        ((SwitchPreference) preference).setChecked(zipCodeEnable);
-        hideOrShowZipCode(zipCodeEnable);
-
         String reset = resources.getString(R.string.reset);
         preference = findPreference(reset);
 
@@ -111,11 +101,6 @@ public class SettingFragment extends PreferenceFragmentCompat implements SharedP
         } else if (key.equals(getString(R.string.content_name_toggle))) {
             checked = sharedPreferences.getBoolean(key, false);
             hideOrShowContentName(checked);
-        } else if (key.equals(getString(R.string.zip_code))) {
-            summary = sharedPreferences.getString(key, getString(R.string.default_zip_code));
-        } else if (key.equals(getString(R.string.zip_code_toggle))) {
-            checked = sharedPreferences.getBoolean(key, false);
-            hideOrShowZipCode(checked);
         }
 
         Preference preference = findPreference(key);
@@ -142,23 +127,13 @@ public class SettingFragment extends PreferenceFragmentCompat implements SharedP
         String contentNameString = context.getString(R.string.content_name);
         sharedPreferences.edit().putString(contentNameString, context.getString(R.string.default_content_name)).apply();
 
-        String zipCodeString = context.getString(R.string.zip_code);
-        sharedPreferences.edit().putString(zipCodeString, context.getString(R.string.default_zip_code)).apply();
-
         String contentNameToggle = context.getString(R.string.content_name_toggle);
         sharedPreferences.edit().putBoolean(contentNameToggle, true).apply();
 
-        String zipCodeToggle = context.getString(R.string.zip_code_toggle);
-        sharedPreferences.edit().putBoolean(zipCodeToggle, true).apply();
     }
 
     private void hideOrShowContentName(boolean result) {
         String contentNameToggle = getActivity().getString(R.string.content_name);
-        findPreference(contentNameToggle).setVisible(result);
-    }
-
-    private void hideOrShowZipCode(boolean result) {
-        String contentNameToggle = getActivity().getString(R.string.zip_code);
         findPreference(contentNameToggle).setVisible(result);
     }
 

@@ -9,8 +9,6 @@ import java.util.Map;
 public class SurveyDebugOption extends SurveyOption implements Survey.SurveyDebugOptionInterface, Serializable {
 
     public String preview;
-    public String zipcode;
-    public boolean sendZipcode = true;
 
     public SurveyDebugOption(String publisher) {
         super(publisher);
@@ -28,13 +26,4 @@ public class SurveyDebugOption extends SurveyOption implements Survey.SurveyDebu
         return preview;
     }
 
-    @Override
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    @Override
-    public boolean getSendZipcode() {
-        return sendZipcode;
-    }
 }

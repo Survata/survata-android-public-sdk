@@ -26,21 +26,10 @@ public class Settings {
         return sharedPreferences.getString(contentNameString, context.getString(R.string.default_content_name));
     }
 
-    public static String getZipCode(Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String zipCodeString = context.getString(R.string.zip_code);
-        return sharedPreferences.getString(zipCodeString, context.getString(R.string.default_zip_code));
-    }
-
     public static boolean getContentNameEnable(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         String contentNameToggle = context.getString(R.string.content_name_toggle);
         return sharedPreferences.getBoolean(contentNameToggle, true);
     }
 
-    public static boolean getZipCodeEnable(Context context) {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        String zipCodeToggle = context.getString(R.string.zip_code_toggle);
-        return sharedPreferences.getBoolean(zipCodeToggle, true);
-    }
 }
